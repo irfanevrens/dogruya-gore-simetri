@@ -43,4 +43,45 @@ public class TestNokta extends TestCase {
 		
 		assertEquals(new Nokta(50, 60), nokta.getAsOrjinal(orjin));
 	}
+	
+	public void testGetAsKoordinat() {
+		
+		Nokta nokta = new Nokta(100, 120);
+		
+		Nokta orjin = new Nokta(60, 50);
+		
+		assertEquals(new Nokta(40, -70), nokta.getAsKoordinat(orjin));
+	}
+	
+	public void testKonumDegistir() {
+		
+		Nokta nokta = new Nokta(-70, 40);
+		
+		nokta.konumDegistir(new Nokta(30, 90), new Nokta(60, 40));
+		
+		assertEquals(new Nokta(-40, -10), nokta);
+	}
+	
+	public void testCevir() {
+		
+		Nokta nokta = new Nokta(0, -70);
+		
+		nokta.cevir(90);
+		assertEquals(new Nokta(70, 0), nokta);
+		
+		nokta.cevir(90);
+		assertEquals(new Nokta(0, 70), nokta);
+		
+		nokta.cevir(90);
+		assertEquals(new Nokta(-70, 0), nokta);
+	}
+	
+	public void testXEksenineGoreSimetriAl() {
+		
+		Nokta nokta = new Nokta(40, 50);
+		
+		nokta.xEksenineGoreSimetriAl();
+		
+		assertEquals(new Nokta(40, -50), nokta);
+	}
 }

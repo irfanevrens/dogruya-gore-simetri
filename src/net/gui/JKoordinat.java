@@ -48,8 +48,7 @@ public class JKoordinat extends JPanel implements IKoordinat {
 		
 		g.setColor(c);
 		
-		if (dogru.aCizilsin) 
-			noktaCiz(dogru.getA(), g, c);
+		if (dogru.aCizilsin) noktaCiz(dogru.getA(), g, c);
 		if (dogru.bCizilsin) noktaCiz(dogru.getB(), g, c);
 		
 		if (dogru.dogruCizilsin) dogruCiz(dogru.getA(), dogru.getB(), g, c);
@@ -104,7 +103,7 @@ public class JKoordinat extends JPanel implements IKoordinat {
 				koordinat.getXY2().x, 
 				koordinat.getOrjin().y);
 		
-		g.setColor(Color.GRAY);
+		//g.setColor(Color.RED);
 		
 		for (int i = 1; i <= koordinat.getYatayAdimSayisi(); i++) {
 			

@@ -13,67 +13,13 @@ public class Ucgen {
 	
 	public boolean ucgenCizilsin = false;
 
-	public void setA(Nokta nokta) {
-		
-		a.setLocation(nokta);
-	}
-
-	public void setB(Nokta nokta) {
+	public void setA(Nokta nokta) { a.setLocation(nokta); }
+	public void setB(Nokta nokta) { b.setLocation(nokta); }
+	public void setC(Nokta nokta) { c.setLocation(nokta); }
 	
-		b.setLocation(nokta);
-	}
-	
-	public void setC(Nokta nokta) {
-		
-		c.setLocation(nokta);
-	}
-	
-	public Nokta getA() {
-		
-		return a;
-	}
-
-	public Nokta getB() {
-
-		return b;
-	}
-	
-	public Nokta getC() {
-
-		return c;
-	}
-
-	public void doAdim1(Ucgen ucgen, Nokta nokta) {
-		
-		// 1. Nokta
-		setA(
-				new Nokta(
-						ucgen.getA().x + nokta.x, 
-						ucgen.getA().y + nokta.y)
-				);
-		
-		aCizilsin = true;
-		
-		// 2. Nokta 
-		setB(
-				new Nokta(
-						ucgen.getB().x + nokta.x, 
-						ucgen.getB().y + nokta.y)
-				);
-		
-		bCizilsin = true;
-		
-		// 3. Nokta 
-		setC(
-				new Nokta(
-						ucgen.getC().x + nokta.x, 
-						ucgen.getC().y + nokta.y)
-				);
-		
-		cCizilsin = true;
-		
-		ucgenCizilsin = true;
-	}
+	public Nokta getA() { return a; }
+	public Nokta getB() { return b; }
+	public Nokta getC() { return c; }
 	
 	public void cevir(double aci) {
 		
@@ -94,5 +40,18 @@ public class Ucgen {
 		getA().konumDegistir(n1, n2);
 		getB().konumDegistir(n1, n2);
 		getC().konumDegistir(n1, n2);
+	}
+	
+	public void xEksenineGoreSimetriAl() {
+		
+		getA().xEksenineGoreSimetriAl();
+		getB().xEksenineGoreSimetriAl();
+		getC().xEksenineGoreSimetriAl();
+	}
+	
+	@Override
+	public String toString() {
+	
+		return "Ucgen: [" + getA() + "], [" + getB() + "], [" + getC() + "]";
 	}
 }

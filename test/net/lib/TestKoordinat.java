@@ -78,10 +78,8 @@ public class TestKoordinat extends TestCase {
 		
 		Koordinat koordinat = new Koordinat();
 		
-		koordinat.setAci(45.0);
+		koordinat.setAci(new Nokta(0, 0), new Nokta(50, -50));
 		
 		assertEquals(45.0, koordinat.getAci());
-		
-		assertEquals(1.0, Math.sin(Matematik.getRadyan(90.0)));
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import net.lib.interfaces.IKoordinat;
+import net.util.Matematik;
 
 public class Koordinat implements IKoordinat {
 
@@ -22,8 +23,8 @@ public class Koordinat implements IKoordinat {
 	private int gridNoktaKalinligi = 1;
 	
 	private int tiklamaSayisi = 1;
-
-	private double aci = 0;
+	
+	private double aci = 0.0;
 	
 	public Koordinat() { }
 	
@@ -120,16 +121,45 @@ public class Koordinat implements IKoordinat {
 		} else if (tiklamaSayisi == 6) {
 			
 			getYeniDogru().setABFromDogru(getDogru());
-			getYeniDogru().konumDegistir(dogru.getA(), getOrjin());
+			
+			getYeniDogru().konumDegistir(dogru.getA(), new Nokta(0, 0));
+			
+			getYeniDogru().aCizilsin = true;
+			getYeniDogru().bCizilsin = true;
+			getYeniDogru().dogruCizilsin = true;
 			
 			getYeniUcgen().setABCFromUcgen(getUcgen());
-			getYeniUcgen().konumDegistir(dogru.getA(), getOrjin());
+			getYeniUcgen().konumDegistir(dogru.getA(), new Nokta(0, 0));
+			
+			getYeniUcgen().aCizilsin = true;
+			getYeniUcgen().bCizilsin = true;
+			getYeniUcgen().cCizilsin = true;			
+			getYeniUcgen().ucgenCizilsin = true;
 			
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 7) {
 			
-			getYeniDogru().cevir(45.0);
-			getYeniUcgen().cevir(45.0);
+			setAci(dogru.getA(), dogru.getB());
+			
+			getYeniDogru().cevir(getAci());
+			getYeniUcgen().cevir(getAci());
+			
+			tiklamaSayisi++;
+		} else if (tiklamaSayisi == 8) {
+			
+			getYeniUcgen().xEksenineGoreSimetriAl();
+			
+			tiklamaSayisi++;
+		} else if (tiklamaSayisi == 9) {
+			
+			getYeniDogru().cevir(-getAci());
+			getYeniUcgen().cevir(-getAci());
+			
+			tiklamaSayisi++;
+		} else if (tiklamaSayisi == 10) {
+			
+			getYeniDogru().konumDegistir(new Nokta(0, 0), dogru.getA());
+			getYeniUcgen().konumDegistir(new Nokta(0, 0), dogru.getA());
 			
 			tiklamaSayisi++;
 		}
@@ -139,14 +169,11 @@ public class Koordinat implements IKoordinat {
 		
 		return point.x > getSol() && point.x < getSag() && point.y > getUst() && point.y < getAlt(); 
 	}
-
-	public void setAci(double aci) {
+	
+	public void setAci(Nokta n1, Nokta n2) {
 		
-		this.aci  = aci;
+		aci = -1 * Matematik.getAci(Math.atan((n2.getY() - n1.getY()) / (n2.getX() - n1.getX())));
 	}
-
-	public double getAci() {
-
-		return aci;
-	}
+	
+	public double getAci() { return aci; } 
 }
