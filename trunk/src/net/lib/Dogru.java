@@ -46,6 +46,8 @@ public class Dogru {
 	}
 	public void doAdim2(Dogru dogru, Nokta orjin, double aci) {
 
+		System.err.println(this);
+			
 		// 1. Nokta
 		
 		Nokta tempNokta1 = new Nokta(
@@ -57,21 +59,42 @@ public class Dogru {
 		
 		aCizilsin = true;
 		
+		System.err.println(this);
+		
 		// 2. Nokta
 
 		Nokta tempNokta2 = new Nokta(
 				
-				(int)(dogru.getB().getAsKoordinat(orjin).x * Matematik.getCos(aci) - dogru.getB().getAsKoordinat(orjin).y * Matematik.getSin(aci)), 
-				(int)(dogru.getB().getAsKoordinat(orjin).x * Matematik.getSin(aci) + dogru.getB().getAsKoordinat(orjin).y * Matematik.getCos(aci)));
+				dogru.getB().getAsKoordinat(orjin).x * Matematik.getCos(aci) - dogru.getB().getAsKoordinat(orjin).y * Matematik.getSin(aci), 
+				dogru.getB().getAsKoordinat(orjin).x * Matematik.getSin(aci) + dogru.getB().getAsKoordinat(orjin).y * Matematik.getCos(aci));
 		
 		setB(tempNokta2.getAsOrjinal(orjin));
 		
 		dogruCizilsin = true;
+		
+		System.err.println(this);
+	}
+	
+	public void cevir(double aci) {
+		
+		getA().cevir(aci);
+		getB().cevir(aci);
 	}
 	
 	@Override
 	public String toString() {
 	
 		return "A: " + a.toString() + ", B: " + b.toString();
+	}
+	
+	public void setABFromDogru(Dogru dogru) {
+		
+		getA().setXYFromNokta(dogru.getA());
+		getB().setXYFromNokta(dogru.getB());
+	}
+	
+	public void konumDegistir(Nokta n1, Nokta n2) {
+		
+		getA().konumDegistir(n1, n2);
 	}
 }

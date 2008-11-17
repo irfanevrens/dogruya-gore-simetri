@@ -74,4 +74,25 @@ public class Ucgen {
 		
 		ucgenCizilsin = true;
 	}
+	
+	public void cevir(double aci) {
+		
+		getA().cevir(aci);
+		getB().cevir(aci);
+		getC().cevir(aci);
+	}
+
+	public void setABCFromUcgen(Ucgen ucgen) {
+
+		getA().setXYFromNokta(ucgen.getA());
+		getB().setXYFromNokta(ucgen.getB());
+		getC().setXYFromNokta(ucgen.getC());
+	}
+
+	public void konumDegistir(Nokta n1, Nokta n2) {
+		
+		getA().konumDegistir(n1, n2);
+		getB().konumDegistir(n1, n2);
+		getC().konumDegistir(n1, n2);
+	}
 }

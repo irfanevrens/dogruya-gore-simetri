@@ -22,5 +22,18 @@ public class TestDogru extends TestCase {
 		dogru.setB(nokta);
 		
 		assertEquals(new Nokta(60, 20), dogru.getB());
-	}	
+	}
+	
+	public void testDonder() {
+		
+		Dogru dogru = new Dogru();
+		
+		dogru.setA(new Nokta(0, 0));
+		dogru.setB(new Nokta(0, -60));
+		
+		dogru.cevir(90);
+		
+		assertEquals(new Nokta(0, 0), dogru.getA());
+		assertEquals(new Nokta(60, 0), dogru.getB());
+	}
 }

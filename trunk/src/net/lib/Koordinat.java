@@ -4,25 +4,14 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import net.lib.interfaces.IKoordinat;
-import net.util.Matematik;
 
 public class Koordinat implements IKoordinat {
 
 	private Dogru dogru = new Dogru();
-	
 	private Ucgen ucgen = new Ucgen();
 	
-	public Ucgen ucgenForAdim1 = new Ucgen();
-	public Ucgen ucgenForAdim2 = new Ucgen();
-	public Ucgen ucgenForAdim3 = new Ucgen();
-	public Ucgen ucgenForAdim4 = new Ucgen();
-	public Ucgen ucgenForAdim5 = new Ucgen();
-	
-	public Dogru dogruForAdim1 = new Dogru();
-	public Dogru dogruForAdim2 = new Dogru();
-	public Dogru dogruForAdim3 = new Dogru();
-	public Dogru dogruForAdim4 = new Dogru();
-	public Dogru dogruForAdim5 = new Dogru();
+	private Dogru yeniDogru = new Dogru();
+	private Ucgen yeniUcgen = new Ucgen();
 	
 	private Nokta orjin = new Nokta();
 	
@@ -40,6 +29,9 @@ public class Koordinat implements IKoordinat {
 	
 	public Dogru getDogru() { return dogru; }
 	public Ucgen getUcgen() { return ucgen; }
+	
+	public Dogru getYeniDogru() { return yeniDogru; }
+	public Ucgen getYeniUcgen() { return yeniUcgen; }
 	
 	public Nokta getOrjin() { return orjin; }
 	
@@ -89,21 +81,23 @@ public class Koordinat implements IKoordinat {
 	
 	private void tiklandi(Nokta nokta) {
 		
+		Nokta noktaKoordinat = nokta.getAsKoordinat(getOrjin());
+		
 		if (tiklamaSayisi == 1) {
 			
-			getUcgen().setA(nokta);
+			getUcgen().setA(noktaKoordinat);
 			getUcgen().aCizilsin = true;
 			
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 2) {
 			
-			getUcgen().setB(nokta);
+			getUcgen().setB(noktaKoordinat);
 			getUcgen().bCizilsin = true;
 			
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 3) {
 			
-			getUcgen().setC(nokta);
+			getUcgen().setC(noktaKoordinat);
 			getUcgen().cCizilsin = true;
 			
 			getUcgen().ucgenCizilsin = true;
@@ -111,13 +105,13 @@ public class Koordinat implements IKoordinat {
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 4) {
 			
-			getDogru().setA(nokta);
+			getDogru().setA(noktaKoordinat);
 			getDogru().aCizilsin = true;
 			
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 5) {
 			
-			getDogru().setB(nokta);
+			getDogru().setB(noktaKoordinat);
 			getDogru().bCizilsin = true;
 			
 			getDogru().dogruCizilsin = true;
@@ -125,28 +119,17 @@ public class Koordinat implements IKoordinat {
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 6) {
 			
-			Nokta tempNokta = new Nokta();
+			getYeniDogru().setABFromDogru(getDogru());
+			getYeniDogru().konumDegistir(dogru.getA(), getOrjin());
 			
-			tempNokta.setLocation(
-					getOrjinX() - dogru.getA().x, 
-					getOrjinY() - dogru.getA().y);
-			
-			dogruForAdim1.doAdim1(dogru, tempNokta);
-			
-			ucgenForAdim1.doAdim1(ucgen, tempNokta);
+			getYeniUcgen().setABCFromUcgen(getUcgen());
+			getYeniUcgen().konumDegistir(dogru.getA(), getOrjin());
 			
 			tiklamaSayisi++;
 		} else if (tiklamaSayisi == 7) {
 			
-			setAci(
-					Matematik.getAci(
-							Math.atan(
-									dogruForAdim1.getB().getAsKoordinat(getOrjin()).y / 
-									dogruForAdim1.getB().getAsKoordinat(getOrjin()).x)) * -1);
-			
-			System.err.println("açý: " + getAci());
-			
-			dogruForAdim2.doAdim2(dogruForAdim1, getOrjin(), getAci());
+			getYeniDogru().cevir(45.0);
+			getYeniUcgen().cevir(45.0);
 			
 			tiklamaSayisi++;
 		}
