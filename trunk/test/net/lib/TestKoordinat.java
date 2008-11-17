@@ -2,8 +2,6 @@ package net.lib;
 
 import java.awt.Dimension;
 
-import net.util.Matematik;
-
 import junit.framework.TestCase;
 
 public class TestKoordinat extends TestCase {
