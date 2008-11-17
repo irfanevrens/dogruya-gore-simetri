@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project dogruya-gore-simetri">
+
+	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+ 
+	<target name="create_run_jar">
+        <jar destfile="D:/projeler/eclipse/java/dogruya-gore-simetri/dogruya-gore-simetri.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="net.Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="D:/projeler/eclipse/java/dogruya-gore-simetri/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="D:/programlar/eclipse/java/eclipse/plugins/org.junit4_4.3.1/junit.jar"/>
+        </jar>
+    </target>
+	
+</project>
