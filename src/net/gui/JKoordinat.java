@@ -30,61 +30,56 @@ public class JKoordinat extends JPanel implements IKoordinat {
 		koordinatSifirla(g);
 		koordinatCiz(g);
 		
-		ucgenCiz(g);
+		elemanlariCiz(g);
 	}
-	
-    private void ucgenCiz(Graphics g) {
+
+	private void elemanlariCiz(Graphics g) {
     	
-		if (koordinat.getUcgen().aCizilsin) noktaCiz(koordinat.getUcgen().getA(), g, Color.RED);
-		if (koordinat.getUcgen().bCizilsin) noktaCiz(koordinat.getUcgen().getB(), g, Color.RED);
-		if (koordinat.getUcgen().cCizilsin) noktaCiz(koordinat.getUcgen().getC(), g, Color.RED);
-		
-		if (koordinat.getUcgen().ucgenCizilsin) ucgenCiz(koordinat.getUcgen(), g, Color.RED);
-		
-		if (koordinat.getDogru().aCizilsin) noktaCiz(koordinat.getDogru().getA(), g, Color.BLUE);
-		if (koordinat.getDogru().bCizilsin) noktaCiz(koordinat.getDogru().getB(), g, Color.BLUE);
-		
-		if (koordinat.getDogru().dogruCizilsin) dogruCiz(koordinat.getDogru(), g, Color.BLUE);
+		ucgenCiz(koordinat.getUcgen(), g, Color.RED);
+		dogruCiz(koordinat.getDogru(), g, Color.BLUE);
 		
 		// Adým 1
 		
-		if (koordinat.dogruForAdim1.dogruCizilsin) dogruCiz(koordinat.dogruForAdim1, g, Color.ORANGE);
-		
-		if (koordinat.ucgenForAdim1.ucgenCizilsin) ucgenCiz(koordinat.ucgenForAdim1, g, Color.ORANGE);
-		
-		// Adým 2
-		
-		if (koordinat.dogruForAdim2.dogruCizilsin) dogruCiz(koordinat.dogruForAdim2, g, Color.MAGENTA);
+		dogruCiz(koordinat.getYeniDogru(), g, Color.ORANGE);
+		ucgenCiz(koordinat.getYeniUcgen(), g, Color.MAGENTA);
 	}
 
 	private void dogruCiz(Dogru dogru, Graphics g, Color c) {
 		
 		g.setColor(c);
 		
-		noktaCiz(dogru.getA(), g, c);
-		noktaCiz(dogru.getB(), g, c);
+		if (dogru.aCizilsin) 
+			noktaCiz(dogru.getA(), g, c);
+		if (dogru.bCizilsin) noktaCiz(dogru.getB(), g, c);
 		
-		dogruCiz(dogru.getA(), dogru.getB(), g, c);
+		if (dogru.dogruCizilsin) dogruCiz(dogru.getA(), dogru.getB(), g, c);
 	}
 
 	private void ucgenCiz(Ucgen ucgen, Graphics g, Color c) {
 		
 		g.setColor(c);
 		
-		noktaCiz(ucgen.getA(), g, c);
-		noktaCiz(ucgen.getB(), g, c);
-		noktaCiz(ucgen.getC(), g, c);
+		if (ucgen.aCizilsin) noktaCiz(ucgen.getA(), g, c);
+		if (ucgen.bCizilsin) noktaCiz(ucgen.getB(), g, c);
+		if (ucgen.cCizilsin) noktaCiz(ucgen.getC(), g, c);
 		
-		dogruCiz(ucgen.getA(), ucgen.getB(), g, c);
-		dogruCiz(ucgen.getB(), ucgen.getC(), g, c);
-		dogruCiz(ucgen.getC(), ucgen.getA(), g, c);
+		if (ucgen.ucgenCizilsin) {
+		
+			dogruCiz(ucgen.getA(), ucgen.getB(), g, c);
+			dogruCiz(ucgen.getB(), ucgen.getC(), g, c);
+			dogruCiz(ucgen.getC(), ucgen.getA(), g, c);
+		}
 	}
 
 	private void dogruCiz(Nokta n1, Nokta n2, Graphics g, Color c) {
 		
 		g.setColor(c);
 		
-		g.drawLine(n1.x, n1.y, n2.x, n2.y);
+		g.drawLine(
+				n1.getAsOrjinal(koordinat.getOrjin()).x, 
+				n1.getAsOrjinal(koordinat.getOrjin()).y, 
+				n2.getAsOrjinal(koordinat.getOrjin()).x, 
+				n2.getAsOrjinal(koordinat.getOrjin()).y);
 	}
 
 	private void koordinatSifirla(Graphics g) {
@@ -168,8 +163,8 @@ public class JKoordinat extends JPanel implements IKoordinat {
         g.setColor(c);
         
         g.fillRect(
-        		nokta.x - 2, 
-        		nokta.y - 2, 
+        		nokta.getAsOrjinal(koordinat.getOrjin()).x - 2, 
+        		nokta.getAsOrjinal(koordinat.getOrjin()).y - 2, 
         		5, 
         		5);
     }
