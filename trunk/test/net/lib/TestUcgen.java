@@ -33,4 +33,6 @@ public class TestUcgen extends TestCase {
 		
 		assertEquals(new Nokta(40, 20), ucgen.getC());
 	}
+	
+	
 }

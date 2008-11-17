@@ -10,31 +10,28 @@ public class Nokta extends Point {
 
 	public Nokta() {
 		
-		super();
+		setLocation(0.0, 0.0);
 	}
 	
 	public Nokta(int x, int y) {
 	
-		super(x, y);
+		setLocation((double) x, (double) y);
 	}
 
 	public Nokta(Nokta nokta) {
 		
-		super(nokta.x, nokta.y);
+		setLocation(nokta.getX(), nokta.getY());
 	}
 	
 	public Nokta(Point point) {
 		
-		super(point);
+		setLocation(point.getX(), point.getY());
 	}
 
 	public Nokta(double x, double y) {
 		
-		this.x = (int) x;
-		this.y = (int) y;
+		setLocation(x, y);
 	}
-	
-	
 
 	public Nokta getAsKoordinat(Point p) {
 
@@ -46,6 +43,13 @@ public class Nokta extends Point {
 		return new Nokta(p.x + x, p.y - y);
 	}
 	
+	/**
+	 * n1 noktasýndan n2'ye taþýnan bir noktanýn ayný yöndeki 
+	 * hareketini yapmasý için kullanýlan bir metoddur.
+	 * 
+	 * @param n1 birinci nokta
+	 * @param n2 ikinci nokta
+	 */
 	public void konumDegistir(Nokta n1, Nokta n2) {
 		
 		setLocation(
@@ -53,6 +57,12 @@ public class Nokta extends Point {
 				getY() - (n1.getY() - n2.getY()));
 	}
 	
+	/**
+	 * noktayý aci derece saat yönünün tersinde orjini referans 
+	 * alarak dönderir
+	 * 
+	 * @param aci dönme derecesi
+	 */
 	public void cevir(double aci) {
 		
 		setLocation(
@@ -69,5 +79,10 @@ public class Nokta extends Point {
 	public void setXYFromNokta(Nokta nokta) {
 		
 		setLocation(nokta.getX(), nokta.getY());
+	}
+
+	public void xEksenineGoreSimetriAl() {
+
+		setLocation(getX(), -getY());
 	}
 }
