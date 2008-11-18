@@ -1,11 +1,10 @@
-package net;
+package proje;
 
 import javax.swing.JFrame;
 
-import net.gui.JProgram;
+import proje.gui.JProgram;
 
 public class Main {
-
 
 	public static void main(String[] args) {
 		
@@ -33,5 +32,4 @@ public class Main {
         program.setSize(600, 500);
         program.setVisible(true);
     }
-
 }

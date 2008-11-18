@@ -1,4 +1,4 @@
-package net.gui;
+package proje.gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ComponentEvent;
@@ -12,15 +12,15 @@ public class JProgram extends JFrame {
 
 	private static final long serialVersionUID = -6710614541821380596L;
 	
-	private JKoordinat koordinat;
+	private JKoordinatSistemi koordinat;
 	
 	public JProgram() {
 		
-		super("Doðruya Göre Simetri");
+		super("DoÄŸruya GÃ¶re Simetri");
 		
 		setLayout(new BorderLayout());
 		
-		koordinat = new JKoordinat();
+		koordinat = new JKoordinatSistemi();
 		
 		koordinat.addMouseListener(new MouseListener() {
 
